@@ -28,7 +28,6 @@ steps:
       repo: registry.meow.tf/tyler/php-laravel
       registry: registry.meow.tf
       tags:
-        - php8
         - php8.2
     depends_on:
       - clone
