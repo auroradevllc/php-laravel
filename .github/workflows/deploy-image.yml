@@ -17,16 +17,16 @@ jobs:
         include:
           - php_version: 8.4
             php_redis_version: 6.1.0
-            tags: "php8.4"
+            tags: ["php8", "php8.4"]
           - php_version: 8.3
             php_redis_version: 6.1.0
-            tags: "php8.3"
+            tags: ["php8.3"]
           - php_version: 8.2
             php_redis_version: 5.3.7
-            tags: "php8.2"
+            tags: ["php8.2"]
           - php_version: 8.1
             php_redis_version: 5.3.7
-            tags: "php8.1"
+            tags: ["php8.1"]
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v4
@@ -46,4 +46,4 @@ jobs:
             PHP_VERSION=${{ matrix.php_version }}
             PHP_REDIS_VERSION=${{ matrix.php_redis_version }}
           push: true
-          tags: ghcr.io/auroradevllc/php-laravel:${{ matrix.tags }}
+          tags: ${{ join(',', fromJSON('["ghcr.io/auroradevllc/php-fpm-laravel:" + tag for tag in matrix.tags]')) }}
